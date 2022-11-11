@@ -308,7 +308,8 @@ def read_svg(path_svg, multiply=False):
                   2,   # num_samples_x
                   2,   # num_samples_y
                   0,   # seed
-                  None,
+                  None, # background image
+                  None, # backward_clamp_gradient_mag - required by https://github.com/daniel347x/diffvg fork
                   *scene_args)
     img = img[:, :, 3:4] * img[:, :, :3] + \
         torch.ones(img.shape[0], img.shape[1], 3,

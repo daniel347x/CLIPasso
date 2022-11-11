@@ -159,7 +159,8 @@ class Painter(torch.nn.Module):
                     2,   # num_samples_x
                     2,   # num_samples_y
                     0,   # seed
-                    None,
+                    None, # background image
+                    None, # backward_clamp_gradient_mag - required by https://github.com/daniel347x/diffvg fork
                     *scene_args)
         return img
     
