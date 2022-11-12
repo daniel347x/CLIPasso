@@ -36,8 +36,8 @@ from torchvision import models, transforms
 from tqdm import tqdm
 
 import CLIP_.clip.sketch_utils as utils
-from CLIP_.clip.models.loss import Loss
-from CLIP_.clip.models.painter_params import Painter, PainterOptimizer
+from CLIP_.clip.loss import Loss
+from CLIP_.clip.painter_params import Painter, PainterOptimizer
 
 
 class Predictor(BasePredictor):
