@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="clipasso_deepink",
+    name="deepclipasso",
     version="1.0.0",
     author="Microsoft ASG ML Team",
     description="CLIPasso applications",
