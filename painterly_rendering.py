@@ -22,8 +22,8 @@ from tqdm.auto import tqdm, trange
 
 import CLIP_.clip.config as config
 import CLIP_.clip.sketch_utils as utils
-from models.loss import Loss
-from models.painter_params import Painter, PainterOptimizer
+from CLIP_.clip.models.loss import Loss
+from CLIP_.clip.models.painter_params import Painter, PainterOptimizer
 from IPython.display import display, SVG
 
 
