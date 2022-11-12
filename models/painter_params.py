@@ -2,7 +2,7 @@ import random
 import CLIP_.clip as clip
 import numpy as np
 import pydiffvg
-import CLIP_.deepclipasso.sketch_utils as utils
+import CLIP_.clip.sketch_utils as utils
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
