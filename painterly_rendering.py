@@ -20,8 +20,8 @@ from PIL import Image
 from torchvision import models, transforms
 from tqdm.auto import tqdm, trange
 
-import config
-import sketch_utils as utils
+import CLIP_.deepclipasso.config as config
+import CLIP_.deepclipasso.sketch_utils as utils
 from models.loss import Loss
 from models.painter_params import Painter, PainterOptimizer
 from IPython.display import display, SVG
@@ -84,7 +84,7 @@ def main(args):
     renderer.set_random_noise(0)
     img = renderer.init_image(stage=0)
     optimizer.init_optimizers()
-    
+
     # not using tdqm for jupyter demo
     if args.display:
         epoch_range = range(args.num_iter)

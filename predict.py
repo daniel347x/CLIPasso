@@ -35,7 +35,7 @@ import wandb
 from torchvision import models, transforms
 from tqdm import tqdm
 
-import sketch_utils as utils
+import CLIP_.deepclipasso.sketch_utils as utils
 from models.loss import Loss
 from models.painter_params import Painter, PainterOptimizer
 
