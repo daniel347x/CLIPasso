@@ -5,6 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="deepclipasso",
+    py_modules=["deepclipasso"],
     version="1.0.0",
     author="Microsoft ASG ML Team",
     description="CLIPasso applications",
