@@ -1,8 +1,8 @@
 import random
-import CLIP_.clip as clip
+from .clip import load, tokenize
 import numpy as np
 import pydiffvg
-import CLIP_.clip.sketch_utils as utils
+from .clip.sketch_utils.utils import imwrite, get_epoch_lr, load_svg
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -94,7 +94,7 @@ class Painter(torch.nn.Module):
                     self.canvas_height,
                     self.shapes,
                     self.shape_groups,
-                ) = utils.load_svg(self.path_svg)
+                ) = load_svg(self.path_svg)
                 # if you want to add more strokes to existing ones and optimize on all of them
                 num_paths_exists = len(self.shapes)
 
@@ -119,7 +119,7 @@ class Painter(torch.nn.Module):
         img = img.unsqueeze(0)
         img = img.permute(0, 3, 1, 2).to(self.device)  # NHWC -> NCHW
         return img
-        # utils.imwrite(img.cpu(), '{}/init.png'.format(args.output_dir), gamma=args.gamma, use_wandb=args.use_wandb, wandb_name="init")
+        # imwrite(img.cpu(), '{}/init.png'.format(args.output_dir), gamma=args.gamma, use_wandb=args.use_wandb, wandb_name="init")
 
     def get_image(self):
         img = self.render_warp()
@@ -283,7 +283,7 @@ class Painter(torch.nn.Module):
         return attn
 
     def define_attention_input(self, target_im):
-        model, preprocess = clip.load(
+        model, preprocess = load(
             self.saliency_clip_model, device=self.device, jit=False
         )
         model.eval().to(self.device)
@@ -295,11 +295,11 @@ class Painter(torch.nn.Module):
         self.image_input_attn_clip = data_transforms(target_im).to(self.device)
 
     def clip_attn(self):
-        model, preprocess = clip.load(
+        model, preprocess = load(
             self.saliency_clip_model, device=self.device, jit=False
         )
         model.eval().to(self.device)
-        text_input = clip.tokenize([self.text_target]).to(self.device)
+        text_input = tokenize([self.text_target]).to(self.device)
 
         if "RN" in self.saliency_clip_model:
             saliency_layer = "layer4"
@@ -472,7 +472,7 @@ class PainterOptimizer:
             )
 
     def update_lr(self, counter):
-        new_lr = utils.get_epoch_lr(counter, self.args)
+        new_lr = get_epoch_lr(counter, self.args)
         for param_group in self.points_optim.param_groups:
             param_group["lr"] = new_lr
 
