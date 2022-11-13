@@ -1,6 +1,6 @@
 
 import collections
-import CLIP_.clip as clip
+import .clip as clip
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
@@ -460,4 +460,3 @@ class CLIPConvLoss(torch.nn.Module):
         x4 = self.layer4(x3)
         y = self.att_pool2d(x4)
         return y, [x, x1, x2, x3, x4]
-        
