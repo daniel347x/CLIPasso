@@ -15,7 +15,7 @@ from torchvision import transforms
 from torchvision.utils import make_grid
 from skimage.transform import resize
 
-from clip import U2NET
+from .u2net import U2NET
 
 
 def imwrite(
