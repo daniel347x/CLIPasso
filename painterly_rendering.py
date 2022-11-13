@@ -104,6 +104,7 @@ def main(args):
         renderer.set_random_noise(epoch)
         if args.lr_scheduler:
             optimizer.update_lr(counter)
+            assert False, f"Not fully implemented yet"
 
         start = time.time()
         optimizer.zero_grad_()

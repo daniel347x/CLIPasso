@@ -2,7 +2,9 @@ import random
 from .clip import load, tokenize
 import numpy as np
 import pydiffvg
-from .clip.sketch_utils.utils import imwrite, get_epoch_lr, load_svg
+
+# from .clip.sketch_utils.utils import imwrite, get_epoch_lr, load_svg
+from .sketch_utils import imwrite, load_svg
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -191,7 +193,7 @@ class Painter(torch.nn.Module):
             0,  # seed
             None,  # background image
             None,  # backward_clamp_gradient_mag - required by https://github.com/daniel347x/diffvg fork
-            *scene_args
+            *scene_args,
         )
         return img
 
@@ -472,9 +474,10 @@ class PainterOptimizer:
             )
 
     def update_lr(self, counter):
-        new_lr = get_epoch_lr(counter, self.args)
-        for param_group in self.points_optim.param_groups:
-            param_group["lr"] = new_lr
+        # new_lr = get_epoch_lr(counter, self.args)
+        # for param_group in self.points_optim.param_groups:
+        #     param_group["lr"] = new_lr
+        assert False, f"Not fully implemented yet"
 
     def zero_grad_(self):
         self.points_optim.zero_grad()
